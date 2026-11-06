@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="SDS版狼人杀主持人工具：生成匿名数据、判断任务结果并安全投屏。"
+    />
+    <meta name="theme-color" content="#16213c" />
+    <title>SDS版狼人杀 · 主持人工具</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="返回SDS版狼人杀首页">
+        <span>SIGNAL</span><i>/</i><span>NOISE</span>
+        <small>SDS版狼人杀</small>
+      </a>
+      <div class="privacy-status">
+        <span class="privacy-dot" aria-hidden="true"></span>
+        主持人私密界面 · 请勿投屏
+      </div>
+      <div class="topbar-actions">
+        <a class="topbar-link" href="../rules/">完整规则</a>
+        <button class="cover-button" id="cover-screen" type="button">临时遮屏</button>
+      </div>
+    </header>
+
+    <main id="app" class="app-shell" aria-live="polite"></main>
+
+    <footer class="footer">
+      <span>School of Data Science · Classroom Game</span>
+      <strong>随机不等于没有规律。异常也不等于一定有狼。</strong>
+      <span>Signal N(50,10²) · Noise 50 / 25 / 75 · Z &gt; 1.5</span>
+    </footer>
+
+    <section class="public-screen" id="public-screen" aria-hidden="true" inert>
+      <div class="public-frame">
+        <div class="public-topline">
+          <span>SDS · SIGNAL OR NOISE</span>
+          <span id="public-round-label"></span>
+        </div>
+        <div class="public-content">
+          <p class="public-kicker">匿名车队数据 · 从小到大</p>
+          <div class="public-values" id="public-values"></div>
+          <div class="public-result" id="public-result"></div>
+          <div class="public-score" id="public-score"></div>
+        </div>
+        <div class="public-actions">
+          <button type="button" id="public-fullscreen">全屏展示</button>
+          <button type="button" id="close-public">结束公开展示</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy-cover" id="privacy-cover" aria-hidden="true" inert>
+      <div class="cover-wave" aria-hidden="true"></div>
+      <p>SDS · SIGNAL OR NOISE</p>
+      <h2>主持人正在准备本轮数据</h2>
+      <span>请稍候 · PLAYER VIEW</span>
+      <button type="button" id="close-cover">确认投影已关闭，返回私密界面</button>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

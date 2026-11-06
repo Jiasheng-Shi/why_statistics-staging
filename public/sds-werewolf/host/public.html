@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#16213c" />
+    <meta name="robots" content="noindex" />
+    <title>SDS版狼人杀 · 公开投屏</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="standalone-body">
+    <main class="public-frame standalone-public" id="standalone-public">
+      <div class="public-topline">
+        <span>SDS · SIGNAL OR NOISE</span>
+        <span id="public-round-label">等待主持人发送结果</span>
+      </div>
+      <div class="public-content">
+        <p class="public-kicker" id="public-kicker">公开窗口已就绪</p>
+        <div class="public-values" id="public-values"></div>
+        <div class="public-result" id="public-result"></div>
+        <div class="public-score" id="public-score"></div>
+      </div>
+      <div class="public-actions">
+        <button type="button" id="public-fullscreen">全屏展示</button>
+      </div>
+    </main>
+    <script type="module" src="./public.js"></script>
+  </body>
+</html>

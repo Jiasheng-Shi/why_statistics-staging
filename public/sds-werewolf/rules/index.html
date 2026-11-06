@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#16213c" />
+    <meta name="description" content="SDS版狼人杀完整规则：Signal or Noise课堂统计游戏。" />
+    <title>完整规则 · SDS版狼人杀</title>
+    <link rel="stylesheet" href="../site.css" />
+  </head>
+  <body class="rules-body">
+    <header class="site-nav">
+      <a class="wordmark" href="../">SIGNAL <i>/</i> NOISE <small>SDS版狼人杀</small></a>
+      <nav aria-label="游戏页面导航">
+        <a href="../host/">主持人工具</a>
+        <a aria-current="page" href="./">完整规则</a>
+        <a href="../../">返回 Why Statistics</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="rules-hero">
+        <div>
+          <p class="kicker">COMPLETE RULEBOOK · WEB EDITION</p>
+          <h1>SDS版狼人杀</h1>
+          <p class="hero-lead">8名玩家、2名 Noise（狼人）、6名 Signal（好人）。五轮任务，用随机数据制造一场可以推理、却无法轻易实锤的身份博弈。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="../host/">打开主持人工具 <span>→</span></a>
+            <a class="button secondary" href="../sds-werewolf-rules.pdf" download>下载 PDF 规则</a>
+          </div>
+        </div>
+        <aside class="rules-summary">
+          <span>FAST SUMMARY</span>
+          <strong>6 SIGNAL</strong>
+          <strong>2 NOISE</strong>
+          <strong>3 · 3 · 4 · 4 · 5</strong>
+          <p>三次成功：Signal立即获胜<br />三次失败：进入最终审判</p>
+        </aside>
+      </section>
+
+      <nav class="rule-index" aria-label="规则目录">
+        <a href="#roles">身份</a><a href="#missions">五轮任务</a><a href="#captain">队长与组队</a>
+        <a href="#data">生成数据</a><a href="#judgment">判定</a><a href="#review">复盘</a>
+        <a href="#mute">滚动禁言</a><a href="#ending">最终审判</a><a href="#probability">失败概率</a>
+        <a href="#host-guide">主持人时间线</a>
+      </nav>
+
+      <section class="rule-section" id="roles">
+        <header><span>01</span><div><p class="kicker">IDENTITIES</p><h2>身份与目标</h2></div></header>
+        <div class="role-grid">
+          <article class="role-card signal-role">
+            <p>SIGNAL · 好人</p><h3>6人</h3>
+            <ul>
+              <li>上车时生成来自 <code>N(50,10²)</code> 的数字。</li>
+              <li>未被禁言且本轮上车时，必须认领自己的真实数字。</li>
+              <li>完成三次成功任务，或在最终审判中同时找出两名 Noise。</li>
+            </ul>
+          </article>
+          <article class="role-card noise-role">
+            <p>NOISE · 狼人</p><h3>2人</h3>
+            <ul>
+              <li>每次上车秘密选择潜伏、向下破坏或向上破坏。</li>
+              <li>未被禁言且本轮上车时，可以认领任意公开数字。</li>
+              <li>制造三次任务失败，并在最终审判中隐藏至少一名 Noise。</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="callout"><strong>开局互认与主持人记录</strong><p>发完身份后，全员闭眼，两名 Noise 睁眼互认。主持人记下两人的座位号，并录入私密主持工具。工具界面不得投屏。</p></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Noise行动</th><th>生成分布</th><th>可能用途</th></tr></thead>
+            <tbody>
+              <tr><td>潜伏</td><td><code>N(50,10²)</code></td><td>降低暴露风险；仍可能意外失败。</td></tr>
+              <tr><td>向下破坏</td><td><code>N(25,10²)</code></td><td>尝试把 Noise 平均值拉低。</td></tr>
+              <tr><td>向上破坏</td><td><code>N(75,10²)</code></td><td>尝试把 Noise 平均值拉高。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout orange"><strong>两名 Noise 同车时</strong><p>同向破坏通常更强；一人选25、另一人选75时，平均值可能重新接近50，破坏会互相抵消。</p></div>
+      </section>
+
+      <section class="rule-section" id="missions">
+        <header><span>02</span><div><p class="kicker">FIVE MISSIONS</p><h2>五轮任务</h2></div></header>
+        <div class="mission-row" aria-label="五轮车队人数">
+          <div><small>第1轮</small><strong>3</strong><span>人车</span></div>
+          <div><small>第2轮</small><strong>3</strong><span>人车</span></div>
+          <div><small>第3轮</small><strong>4</strong><span>人车</span></div>
+          <div><small>第4轮</small><strong>4</strong><span>人车</span></div>
+          <div><small>第5轮</small><strong>5</strong><span>人车</span></div>
+        </div>
+        <div class="flow-line"><span>问题竞选队长</span><i>→</i><span>队长组队</span><i>→</i><span>全员表决</span><i>→</i><span>生成数据</span><i>→</i><span>公布结果</span><i>→</i><span>复盘与禁言</span></div>
+        <div class="callout"><strong>最重要的信息不对称</strong><p>纯 Signal 车一定成功。失败能证明车上至少有一名 Noise；成功却不能证明车上全是 Signal。</p></div>
+      </section>
+
+      <section class="rule-section" id="captain">
+        <header><span>03</span><div><p class="kicker">CAPTAIN & TEAM</p><h2>问题、队长与组队</h2></div></header>
+        <ol class="numbered-steps">
+          <li><b>回答本轮问题</b><p>所有当前未被禁言、且尚未实际带队出发过的玩家依次回答，每人最多15秒。</p></li>
+          <li><b>选出队长</b><p>全员同时投票，不能投自己；最高票者当选，平票时快速加赛。</p></li>
+          <li><b>队长组队</b><p>队长在30秒内选择规定人数，可以选择自己。</p></li>
+          <li><b>车队表决</b><p>8人同时投同意或反对。至少5票同意才通过；4:4或更少同意票均为否决。</p></li>
+        </ol>
+        <div class="callout orange"><strong>4:4或车队被否决后怎么办？</strong><p>仍由原队长负责。队长须在30秒内更换至少一名车员；第二支车队不再表决，直接出发。第一轮表决结果保留，供复盘使用。</p></div>
+
+        <details class="question-bank">
+          <summary>展开五个备用问题</summary>
+          <ol>
+            <li>接下来半个学期，你最想完成的一个具体学习目标是什么？</li>
+            <li>接下来半个学期，你准备怎样安排上课、自习、社团和休息？</li>
+            <li>接下来半个学期，你最想提升哪一项与数据科学有关的能力？第一步准备做什么？</li>
+            <li>除学习之外，接下来半个学期你最想认真投入的一件事是什么？为什么？</li>
+            <li>到本学期结束时，你希望自己在哪一方面发生最明显的变化？</li>
+          </ol>
+        </details>
+      </section>
+
+      <section class="rule-section" id="data">
+        <header><span>04</span><div><p class="kicker">GENERATE & DISTRIBUTE</p><h2>生成与发放数据</h2></div></header>
+        <ol class="numbered-steps compact">
+          <li><b>闭眼与Noise选择</b><p>全员闭眼，Noise 睁眼；只有上车 Noise 秘密选择潜伏、向下或向上。</p></li>
+          <li><b>网页生成</b><p>主持人工具生成每名车员的一位小数数据。</p></li>
+          <li><b>抄写纸条</b><p>主持人把座位号与数字分别写在折叠纸条上。</p></li>
+          <li><b>私下查看</b><p>车员看5–10秒，不能展示或告诉别人；随后主持人收回纸条。</p></li>
+          <li><b>公开结果</b><p>只显示从小到大排列的匿名数字、SUCCESS / FAIL 和当前比分。</p></li>
+        </ol>
+        <div class="privacy-grid">
+          <div><strong>公开</strong><p>车队成员、匿名排序数字、任务结果、比分。</p></div>
+          <div><strong>不公开</strong><p>座位—数字对应、身份、Noise行动、两组均值与Z值。</p></div>
+        </div>
+      </section>
+
+      <section class="rule-section formula-section" id="judgment">
+        <header><span>05</span><div><p class="kicker">PUBLIC JUDGMENT RULE</p><h2>公开判定规则</h2></div></header>
+        <p>若车上没有 Noise，任务必定成功。若车上有 <em>k</em> 名 Noise、<em>s</em> 名 Signal，使用纸条上实际显示的一位小数计算：</p>
+        <div class="formula" aria-label="Z等于Noise均值减Signal均值的绝对值，除以10乘根号1除以k加1除以s">
+          Z = | mean(Noise) − mean(Signal) |<br /><i>÷</i> [ 10 × √(1/k + 1/s) ]
+        </div>
+        <div class="thresholds"><span><b>Z &gt; 1.5</b>任务失败</span><span><b>Z ≤ 1.5</b>任务成功</span></div>
+        <div class="callout orange"><strong>极端值不是身份证明</strong><p>Signal也可能随机生成高值或低值；Noise也可能生成接近50的数字。还要结合组队、同意票和认领冲突。</p></div>
+      </section>
+
+      <section class="rule-section" id="review">
+        <header><span>06</span><div><p class="kicker">REVIEW & CLAIM</p><h2>复盘与数字认领</h2></div></header>
+        <p class="section-lead">只有当前未被禁言者发言。每人一次，最多15秒；不插话、不反驳、不追加解释。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>玩家</th><th>认领规则</th></tr></thead>
+            <tbody>
+              <tr><td>未禁言且上车的 Signal</td><td>必须认领自己的真实数字。</td></tr>
+              <tr><td>未禁言且上车的 Noise</td><td>可以认领任意一个公开数字。</td></tr>
+              <tr><td>未上车玩家</td><td>不能认领，只能分析。</td></tr>
+              <tr><td>当前禁言玩家</td><td>本轮直接跳过，不发言，也不认领。</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout"><strong>发言位置也是信息结构</strong><p>后置位 Noise 可以冒领前置位 Signal 的数字，前置位不能再次辩护。每轮更换起点并交替方向。</p></div>
+      </section>
+
+      <section class="rule-section" id="mute">
+        <header><span>07</span><div><p class="kicker">ROLLING MUTE</p><h2>滚动禁言</h2></div></header>
+        <p class="section-lead">每轮非终局复盘后，全员从当前未被禁言的玩家中投出下一轮禁言对象。新对象确定后，上一名禁言玩家立即解禁；任意时刻最多一人被禁言。</p>
+        <div class="permission-grid">
+          <article><h3>当前禁言者仍然可以</h3><ul><li>被选上车并查看数字</li><li>作为 Noise 选择秘密行动</li><li>投车队票与下一名禁言票</li><li>参加最终审判</li></ul></article>
+          <article><h3>当前禁言者不可以</h3><ul><li>回答队长竞选问题</li><li>担任队长</li><li>参加本轮复盘</li><li>认领数字</li></ul></article>
+        </div>
+        <p class="fine-print">不能投自己；当前禁言者不能再次成为本轮候选人。平票时由本轮实际出发的队长决定。若本轮已产生第三次成功或失败，则不再进行禁言投票。</p>
+      </section>
+
+      <section class="rule-section ending-section" id="ending">
+        <header><span>08</span><div><p class="kicker">WIN & FINAL AUDIT</p><h2>胜负与最终审判</h2></div></header>
+        <div class="ending-grid"><article><span>3× SUCCESS</span><h3>Signal立即获胜</h3><p>公开所有身份，游戏结束。</p></article><article><span>3× FAIL</span><h3>进入最终审判</h3><p>先完成本轮15秒复盘，不直接判Noise获胜。</p></article></div>
+        <ol class="numbered-steps compact">
+          <li><b>静默30秒</b><p>不再自由讨论。</p></li>
+          <li><b>全体参加</b><p>包括当前禁言玩家与两名 Noise。</p></li>
+          <li><b>每人写两名嫌疑人</b><p>两人必须不同，且不能写自己。</p></li>
+          <li><b>选出票数最高两人</b><p>两人都是 Noise，Signal 翻盘；只要有一人不是 Noise，Noise 获胜。</p></li>
+        </ol>
+        <div class="callout orange"><strong>第二名平票</strong><p>只在平票者之间进行一次无讨论加赛；若仍平票，Noise（狼人）获胜。</p></div>
+      </section>
+
+      <section class="rule-section" id="probability">
+        <header><span>09</span><div><p class="kicker">MISSION FAILURE PROBABILITY</p><h2>任务失败概率</h2></div></header>
+        <div class="table-wrap probability-table">
+          <table>
+            <thead><tr><th>车队情况</th><th>3人车任务失败概率</th><th>4人车任务失败概率</th><th>5人车任务失败概率</th></tr></thead>
+            <tbody>
+              <tr><td>纯 Signal</td><td>0%</td><td>0%</td><td>0%</td></tr>
+              <tr><td>一名 Noise 潜伏</td><td>约13.4%</td><td>约13.4%</td><td>约13.4%</td></tr>
+              <tr><td>一名 Noise 选择25或75</td><td>约70.6%</td><td>约74.7%</td><td>约76.9%</td></tr>
+              <tr><td>两名 Noise 同向破坏</td><td>约70.6%</td><td>约84.1%</td><td>约89.2%</td></tr>
+              <tr><td>两名 Noise 反向破坏</td><td>约13.4%</td><td>约13.4%</td><td>约13.4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="calibration-card"><span>整局校准</span><p>在完全随机组队、上车 Noise 都同向破坏的简化假设下，各轮任务失败概率约为：</p><strong>45.4% · 45.4% · 60.7% · 60.7% · 73.1%</strong><p>五轮中至少三次任务失败的概率约为 <b>63.3%</b>。</p></div>
+        <p class="fine-print">这些是任务失败概率，不是实际胜率保证。策略组队、潜伏、反向抵消和最终审判都会改变结果。</p>
+      </section>
+
+      <section class="rule-section" id="host-guide">
+        <header><span>10</span><div><p class="kicker">55-MINUTE HOST GUIDE</p><h2>主持人时间线</h2></div></header>
+        <div class="timeline">
+          <article><time>0–5 MIN</time><h3>说明规则、抽身份</h3><p>固定1–8号座位，统一使用 Signal 与 Noise。</p></article>
+          <article><time>5–45 MIN</time><h3>最多五轮任务</h3><p>每轮约6–8分钟，主持人工具提前打开。</p></article>
+          <article><time>45–50 MIN</time><h3>最终审判与揭晓</h3><p>若Signal已经三次成功，则直接揭晓。</p></article>
+          <article><time>50–55 MIN</time><h3>统计复盘</h3><p>讨论随机波动、重叠分布与不完全信息。</p></article>
+        </div>
+        <div class="callout red"><strong>主持人底线</strong><p>不要替玩家盘逻辑，不验证当轮认领，不暗示某个数字“太像 Noise”。主持人控制台不要投影。</p></div>
+      </section>
+
+      <section class="rule-close">
+        <p class="kicker">AFTER THE GAME</p>
+        <h2>三个值得带走的问题</h2>
+        <ol><li>一个极端数字为什么不能直接证明某人是 Noise？</li><li>为什么两名 Noise 反向选择时，破坏效果可能消失？</li><li>如果只观察已经失败的车队，我们会不会产生新的选择偏差？</li></ol>
+        <div class="hero-actions"><a class="button primary" href="../host/">立即打开主持人工具</a><a class="button secondary" href="../sds-werewolf-rules.pdf" download>下载完整PDF</a><a class="text-link" href="../../">返回 Why Statistics 首页 ↗</a></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>School of Data Science · Classroom Game</span><strong>Signal or Noise?</strong><a href="../">游戏首页 ↑</a></footer>
+  </body>
+</html>

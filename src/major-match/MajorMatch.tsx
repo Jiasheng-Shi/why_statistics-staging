@@ -333,7 +333,10 @@ export function MajorMatch() {
       <nav className={styles.nav} aria-label={zh ? "为什么选择统计学导航" : "Why Statistics navigation"}>
         <a href="#cover" className={styles.brand}>WHY STATISTICS</a>
         <div className={styles.navLinks}><a href="#news">{tx("News")}</a><a href="#difference">{tx("The difference")}</a><a href="#stories">{tx("Three ideas")}</a><a href="#curriculum">{tx("Courses")}</a><a href="#pathways">{tx("Pathways")}</a><a href="#route">{tx("Find your route")}</a></div>
-        <button className={styles.languageToggle} type="button" onClick={switchLanguage} aria-label={zh ? "Switch to English" : "切换至中文"}>{zh ? "EN" : "中文"}</button>
+        <div className={styles.navActions}>
+          <a className={styles.werewolfNavLink} href={asset("sds-werewolf/")}>{zh ? "SDS狼人杀" : "SDS Werewolf"} <span>↗</span></a>
+          <button className={styles.languageToggle} type="button" onClick={switchLanguage} aria-label={zh ? "Switch to English" : "切换至中文"}>{zh ? "EN" : "中文"}</button>
+        </div>
       </nav>
 
       <section className={styles.cover} id="cover">
