@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#16213c" />
+    <meta
+      name="description"
+      content="SDS版狼人杀：一场关于随机、噪声、不完全信息与统计判断的课堂游戏。"
+    />
+    <title>SDS版狼人杀 · Signal or Noise</title>
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <header class="site-nav">
+      <a class="wordmark" href="./">SIGNAL <i>/</i> NOISE <small>SDS版狼人杀</small></a>
+      <nav aria-label="游戏页面导航">
+        <a href="./host/">主持人工具</a>
+        <a href="./rules/">完整规则</a>
+        <a href="../">返回 Why Statistics</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="game-hero">
+        <div class="hero-copy">
+          <p class="kicker">SDS CLASSROOM GAME · 8 PLAYERS · 5 MISSIONS</p>
+          <h1>随机数里，<br />藏着两只狼。</h1>
+          <p class="hero-lead">
+            6名 Signal（好人），2名 Noise（狼人）。当所有数字来自彼此重叠的分布，
+            你还能分清异常、随机波动与真正的干扰吗？
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="./host/">打开主持人工具 <span>→</span></a>
+            <a class="button secondary" href="./rules/">阅读完整规则</a>
+          </div>
+          <p class="microcopy">五轮车队人数：3 · 3 · 4 · 4 · 5　｜　Signal N(50,10²)　｜　Noise 50 / 25 / 75</p>
+        </div>
+
+        <div class="signal-board" aria-label="Signal和Noise的数据示意图">
+          <div class="board-label"><span>DATA STREAM</span><strong>?</strong></div>
+          <div class="wave signal-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="wave noise-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="number-cloud">
+            <span>48.3</span><span>31.6</span><span>52.1</span><span>73.9</span><span>46.8</span>
+          </div>
+          <p>谁是随机偏离，谁在主动制造偏离？</p>
+        </div>
+      </section>
+
+      <section class="route-section" aria-labelledby="choose-route">
+        <p class="kicker">CHOOSE YOUR VIEW</p>
+        <h2 id="choose-route">现在要做什么？</h2>
+        <div class="route-grid">
+          <a class="route-card host-card" href="./host/">
+            <span>01 · HOST CONSOLE</span>
+            <h3>主持人工具</h3>
+            <p>选定两名 Noise、组建每轮车队、配置秘密行动、生成私人数字，并打开完全脱敏的独立投屏窗口。</p>
+            <strong>开始主持游戏 →</strong>
+          </a>
+          <a class="route-card rules-card" href="./rules/">
+            <span>02 · RULEBOOK</span>
+            <h3>完整规则</h3>
+            <p>查看身份、队长问答、车队表决、数据判定、数字认领、滚动禁言、最终审判与任务失败概率。</p>
+            <strong>阅读规则 →</strong>
+          </a>
+        </div>
+      </section>
+
+      <section class="idea-strip">
+        <article><b>01</b><h3>异常不等于证据</h3><p>Signal 也可能生成极端值；Noise 也可能看起来非常普通。</p></article>
+        <article><b>02</b><h3>成功不等于干净</h3><p>含有 Noise 的车队仍可能成功。一次结果永远不是完整身份。</p></article>
+        <article><b>03</b><h3>信息本身有结构</h3><p>发言顺序、数字认领、组队与表决会共同改变你能推断什么。</p></article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>School of Data Science · Classroom Game</span>
+      <strong>Signal or Noise?</strong>
+      <a href="../">WHY STATISTICS ↗</a>
+    </footer>
+  </body>
+</html>
